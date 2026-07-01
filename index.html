@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skpro.ch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #09090b; /* Темный фон */
+            --text-muted: #4b5563; /* Серый цвет для исходного состояния */
+            --text-active: #ffffff; /* Белый цвет при активации */
+            --accent-color: #00f2fe; /* Неоновый голубой цвет для точки */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Блокировка анимации при загрузке страницы */
+        .no-transition * {
+            transition: none !important;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background: radial-gradient(circle at center, #18181b 0%, #09090b 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 4px; /* Фиксированный зазор между буквами */
+            font-size: clamp(2.5rem, 8vw, 4.5rem); /* Адаптивный размер шрифта */
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            user-select: none;
+            padding: 20px;
+            transition: color 0.4s ease;
+        }
+
+        /* Свечение при активации */
+        .logo:hover,
+        .logo.active {
+            color: var(--text-active);
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+        }
+
+        .letter {
+            position: relative;
+            height: 1.3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Контейнер-ограничитель для анимации переката (только для изменяющихся букв) */
+        .letter-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .letter span {
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.4s ease;
+        }
+
+        /* Строчные буквы (исходные) */
+        .letter .low {
+            position: relative;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Прописные буквы (новые) */
+        .letter .up {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        /* Анимация переката */
+        .logo:hover .letter .low,
+        .logo.active .letter .low {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+
+        .logo:hover .letter .up,
+        .logo.active .letter .up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Контейнер для буквы "o" и точки */
+        .dot-container {
+            position: relative;
+        }
+
+        /* Стилизация точки (вынесена из зоны overflow:hidden, теперь не обрезается) */
+        .dot {
+            position: absolute;
+            left: calc(100% + 2px); /* Размещаем ровно по центру зазора gap */
+            bottom: 0.22em; /* Выравнивание по базовой линии */
+            transform: translate(-50%, 0) scale(1);
+            width: 0.12em;
+            height: 0.12em;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-color);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        /* Скрытие точки при активации */
+        .logo:hover .dot,
+        .logo.active .dot {
+            transform: translate(-50%, 0) scale(0);
+            opacity: 0;
+        }
+
+        /* Каскадная задержка для плавного волнового эффекта цвета и движения */
+        .letter:nth-child(1) span { transition-delay: 0.00s; }
+        .letter:nth-child(2) span { transition-delay: 0.03s; }
+        .letter:nth-child(3) span { transition-delay: 0.06s; }
+        .letter:nth-child(4) span { transition-delay: 0.09s; } /* Статичная 'r' */
+        .letter:nth-child(5) span { transition-delay: 0.12s; } /* Статичная 'o' */
+        .letter:nth-child(5) .dot  { transition-delay: 0.12s; } /* Исчезновение точки */
+        .letter:nth-child(6) span { transition-delay: 0.15s; } /* 'c' -> 'C' */
+        .letter:nth-child(7) span { transition-delay: 0.18s; } /* 'h' -> 'H' */
+    </style>
+</head>
+<body class="no-transition">
+
+    <div class="logo-container">
+        <div class="logo">
+            <!-- s -> S -->
+            <div class="letter">
+                <div class="letter-inner">
+                    <span class="low">s</span>
+                    <span class="up">S</span>
+                </div>
+            </div>
+            <!-- k -> K -->
+            <div class="letter">
+                <div class="letter-inner">
+                    <span class="low">k</span>
+                    <span class="up">K</span>
+                </div>
+            </div>
+            <!-- p -> P -->
+            <div class="letter">
+                <div class="letter-inner">
+                    <span class="low">p</span>
+                    <span class="up">P</span>
+                </div>
+            </div>
+            <!-- r (полностью статичная) -->
+            <div class="letter">
+                <span>r</span>
+            </div>
+            <!-- o (полностью статичная) + точка -->
+            <div class="letter dot-container">
+                <span>o</span>
+                <div class="dot"></div>
+            </div>
+            <!-- c -> C -->
+            <div class="letter">
+                <div class="letter-inner">
+                    <span class="low">c</span>
+                    <span class="up">C</span>
+                </div>
+            </div>
+            <!-- h -> H -->
+            <div class="letter">
+                <div class="letter-inner">
+                    <span class="low">h</span>
+                    <span class="up">H</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const logo = document.querySelector('.logo');
+        let autoInterval;
+        let activeTimeout;
+        let initialDelayTimeout;
+
+        // Отключаем блокировку анимаций сразу после построения структуры страницы
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.body.classList.remove('no-transition');
+            }, 50);
+        });
+
+        // Запуск одного цикла изменения логотипа
+        function triggerActiveState() {
+            logo.classList.add('active');
+            
+            // Возврат в исходное состояние через 2.5 секунды
+            activeTimeout = setTimeout(() => {
+                logo.classList.remove('active');
+            }, 2500);
+        }
+
+        // Запуск периодического интервала (каждые 7 секунд)
+        function startAutoCycle() {
+            autoInterval = setInterval(triggerActiveState, 7000);
+        }
+
+        // Первое изменение начнется через 2 секунды после загрузки
+        initialDelayTimeout = setTimeout(() => {
+            triggerActiveState();
+            startAutoCycle();
+        }, 2000);
+
+        // Ручное управление: при наведении отключаем таймеры
+        logo.addEventListener('mouseenter', () => {
+            clearTimeout(initialDelayTimeout);
+            clearInterval(autoInterval);
+            clearTimeout(activeTimeout);
+            logo.classList.add('active');
+        });
+
+        // Возобновляем автоматический цикл при уходе курсора
+        logo.addEventListener('mouseleave', () => {
+            logo.classList.remove('active');
+            startAutoCycle();
+        });
+    </script>
+
+</body>
+</html>
