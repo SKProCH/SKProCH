@@ -11,6 +11,7 @@ configuration:
     - private
     - templates
     - .obsidian
+    - post.md
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
