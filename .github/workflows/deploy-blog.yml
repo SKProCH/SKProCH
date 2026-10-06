@@ -33,11 +33,11 @@ jobs:
         working-directory: blog
 
       - name: Install Quartz plugins
-        run: npx quartz plugin install
+        run: node quartz/bootstrap-cli.mjs plugin install
         working-directory: blog
 
       - name: Build blog
-        run: npx quartz build --directory content --output ../public/blog
+        run: node quartz/bootstrap-cli.mjs build --directory content --output ../public/blog
         working-directory: blog
 
       - name: Assemble Pages artifact
