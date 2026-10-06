@@ -1,0 +1,190 @@
+# yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
+configuration:
+  pageTitle: skpro.ch
+  pageTitleSuffix: ""
+  enableSPA: true
+  enablePopovers: true
+  analytics: null
+  locale: en-US
+  baseUrl: skpro.ch/blog
+  ignorePatterns:
+    - private
+    - templates
+    - .obsidian
+  theme:
+    fontOrigin: googleFonts
+    cdnCaching: true
+    typography:
+      header: JetBrains Mono
+      body: JetBrains Mono
+      code: JetBrains Mono
+    colors:
+      lightMode:
+        light: "#f4f4f5"
+        lightgray: "#d4d4d8"
+        gray: "#71717a"
+        darkgray: "#3f3f46"
+        dark: "#18181b"
+        secondary: "#0891b2"
+        tertiary: "#0e7490"
+        highlight: rgba(8, 145, 178, 0.12)
+        textHighlight: "#67e8f966"
+      darkMode:
+        light: "#09090b"
+        lightgray: "#27272a"
+        gray: "#71717a"
+        darkgray: "#d4d4d8"
+        dark: "#fafafa"
+        secondary: "#00f2fe"
+        tertiary: "#67e8f9"
+        highlight: rgba(0, 242, 254, 0.1)
+        textHighlight: "#00f2fe33"
+
+plugins:
+  - source: "@quartz-community/created-modified-date"
+    enabled: true
+    options:
+      defaultDateType: modified
+      priority:
+        - frontmatter
+        - git
+        - filesystem
+    order: 10
+  - source: "@quartz-community/syntax-highlighting"
+    enabled: true
+    options:
+      theme:
+        light: github-light
+        dark: github-dark
+      keepBackground: false
+    order: 20
+  - source: "@quartz-community/github-flavored-markdown"
+    enabled: true
+    order: 40
+  - source: "@quartz-community/crawl-links"
+    enabled: true
+    options:
+      markdownLinkResolution: shortest
+    order: 60
+  - source: "@quartz-community/description"
+    enabled: true
+    order: 70
+  - source: "@quartz-community/note-properties"
+    enabled: true
+    options:
+      includeAll: false
+      includedProperties:
+        - description
+        - aliases
+      excludedProperties: []
+      hidePropertiesView: false
+      delimiters: ---
+      language: yaml
+    order: 5
+  - source: "@quartz-community/content-index"
+    enabled: true
+    options:
+      enableSiteMap: true
+      enableRSS: true
+  - source: "@quartz-community/cname"
+    enabled: true
+  - source: "@quartz-community/content-page"
+    enabled: true
+  - source: "@quartz-community/folder-page"
+    enabled: true
+  - source: "@quartz-community/tag-page"
+    enabled: true
+  - source: "@quartz-community/search"
+    enabled: true
+    layout:
+      position: left
+      priority: 20
+      group: toolbar
+      groupOptions:
+        grow: true
+  - source: "@quartz-community/article-title"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 10
+  - source: "@quartz-community/content-meta"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 20
+  - source: "@quartz-community/tag-list"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 30
+  - source: "@quartz-community/page-title"
+    enabled: true
+    layout:
+      position: left
+      priority: 10
+  - source: "@quartz-community/darkmode"
+    enabled: false
+    layout:
+      position: left
+      priority: 30
+      group: toolbar
+  - source: "@quartz-community/recent-notes"
+    enabled: true
+    options:
+      title: Posts
+      limit: 10
+      showTags: false
+      hideTagPages: true
+      hideFolderPages: true
+    layout:
+      position: left
+      priority: 40
+  - source: "@quartz-community/comments"
+    enabled: true
+    options:
+      provider: giscus
+      options:
+        repo: SKProCH/SKProCH
+        repoId: R_kgDOJlyOvA
+        category: Announcements
+        categoryId: DIC_kwDOJlyOvM4DHL_Y
+        lang: en
+        mapping: pathname
+        strict: false
+        reactionsEnabled: true
+        inputPosition: bottom
+    layout:
+      position: afterBody
+      priority: 10
+  - source: "@quartz-community/footer"
+    enabled: true
+    options:
+      links:
+        GitHub: https://github.com/SKProCH/SKProCH
+    layout:
+      position: footer
+      priority: 50
+  - source: "@quartz-community/rss"
+    enabled: false
+  - source: "@quartz-community/explicit-publish"
+    enabled: false
+
+layout:
+  groups:
+    toolbar:
+      priority: 35
+      direction: row
+      gap: 0.5rem
+  byPageType:
+    "404":
+      positions:
+        beforeBody: []
+        left: []
+        right: []
+    content: {}
+    folder:
+      positions:
+        right: []
+    tag:
+      positions:
+        right: []

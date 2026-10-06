@@ -1,0 +1,17 @@
+@use "./variables.scss" as *;
+
+body {
+  background: #09090b;
+}
+
+.page-title a {
+  letter-spacing: 0;
+}
+
+.page-header {
+  border-bottom-color: #27272a;
+}
+
+.giscus {
+  margin-top: 3rem;
+}
