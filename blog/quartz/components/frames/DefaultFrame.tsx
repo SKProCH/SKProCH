@@ -1,6 +1,6 @@
 import { PageFrame, PageFrameProps } from "./types"
 import HeaderConstructor from "../Header"
-
+import { pathToRoot } from "../../util/path"
 const Header = HeaderConstructor()
 
 /**
@@ -21,10 +21,19 @@ export const DefaultFrame: PageFrame = {
     right,
     footer,
   }: PageFrameProps) {
+    const PageTitle = left[0]
+    const sidebar = left.slice(1)
+    const baseDir = pathToRoot(componentData.fileData.slug)
     return (
       <>
         <div class="left sidebar">
-          {left.map((BodyComponent) => (
+          {PageTitle ? (
+            <div class="sidebar-title-row">
+              <PageTitle {...componentData} />
+              <a class="posts-link" href={`${baseDir}/posts/`}>All posts</a>
+            </div>
+          ) : null}
+          {sidebar.map((BodyComponent) => (
             <BodyComponent {...componentData} />
           ))}
         </div>
