@@ -62,6 +62,14 @@ plugins:
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
     order: 40
+  - source: "@quartz-community/table-of-contents"
+    enabled: true
+    options:
+      collapseByDefault: false
+    order: 50
+    layout:
+      position: right
+      priority: 30
   - source: "@quartz-community/crawl-links"
     enabled: true
     options:
