@@ -3,7 +3,7 @@ title: skpro.ch
 description: The excuse for why a .ch domain is still quietly auto-renewing on my credit card every year.
 ---
 
-# skpro.ch
+# [skpro.ch](https://skpro.ch)
 
 A digital attic: 5% somewhat useful code, 95% convincing myself someone might care
 
