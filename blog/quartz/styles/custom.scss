@@ -23,8 +23,9 @@ pre {
   scrollbar-width: thin;
 
   & > code {
-    overflow-x: visible;
-    overflow-y: hidden;
+    width: 100%;
+    min-width: 100%;
+    overflow: visible;
   }
 
   &::-webkit-scrollbar {
@@ -38,5 +39,61 @@ pre {
   &::-webkit-scrollbar-thumb {
     background: var(--gray);
     border-radius: 999px;
+  }
+}
+
+@media all and ($mobile) {
+  #quartz-body {
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #quartz-body .sidebar.left {
+    width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    column-gap: 0.75rem;
+    row-gap: 1rem;
+  }
+
+  #quartz-body .sidebar.left > .recent-notes {
+    display: block;
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  #quartz-body .center,
+  #quartz-body footer {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  #quartz-body .center {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+
+  #quartz-body .center {
+    overflow-x: hidden;
+  }
+  #quartz-body pre {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  #quartz-body pre > code {
+    width: 100%;
+    min-width: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  #quartz-body pre > code {
+    display: block;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 }
