@@ -15,3 +15,28 @@ body {
 .giscus {
   margin-top: 3rem;
 }
+
+pre {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-color: var(--gray) var(--lightgray);
+  scrollbar-width: thin;
+
+  & > code {
+    overflow-x: visible;
+    overflow-y: hidden;
+  }
+
+  &::-webkit-scrollbar {
+    height: 0.45rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--lightgray);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 999px;
+  }
+}
