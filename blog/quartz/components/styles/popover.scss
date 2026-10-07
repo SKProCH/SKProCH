@@ -38,10 +38,43 @@
     border-radius: 5px;
     box-shadow: 6px 6px 36px 0 rgba(0, 0, 0, 0.25);
     overflow: auto;
+    scrollbar-color: var(--gray) var(--lightgray);
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 0.45rem;
+      height: 0.45rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--lightgray);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--gray);
+      border-radius: 999px;
+    }
     overscroll-behavior: contain;
     white-space: normal;
+    overflow-wrap: anywhere;
     user-select: none;
     cursor: default;
+
+    .note-properties,
+    .note-properties-table {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .note-properties-table {
+      table-layout: fixed;
+    }
+
+    .note-properties-key,
+    .note-properties-value {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
   }
 
   & > .popover-inner[data-content-type] {
