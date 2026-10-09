@@ -120,7 +120,7 @@ function nearest(r,g,b) {
     return lut[key]=best;
 }
 function render(t) {
-    const pulse=Math.sin(t*7.7)*.16+Math.sin(t*13.1+1)*.1+Math.sin(t*3.2)*.08;
+    const pulse=Math.sin(t * 1.4) * 0.06 + Math.sin(t * 2.3 + 1) * 0.025 + Math.sin(t * 0.7) * 0.035;
     for(let k=0;k<N;k++) {const v=light[k]*pulse;cr[k]=sr[k]+fr[k]*pulse+v;cg[k]=sg[k]+fg[k]*pulse+v*.66;cb[k]=sb[k]+fb[k]*pulse+v*.19;}
     for(let i=0;i<16;i++) {
         const age=((t*.11+i/16)%1+1)%1,up=3+age*55,drift=-age*12+Math.sin(age*10+t*.35)*(.4+age*2),px=(FX+drift*FC+up*FS)*S,py=(FY+drift*FS-up*FC)*S,radius=(.9+age*4.8)*S;
