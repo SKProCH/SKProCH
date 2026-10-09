@@ -44,6 +44,7 @@ jobs:
         shell: bash
         run: |
           cp index.html public/index.html
+          cp -R assets public/assets
           cp CNAME public/CNAME
 
       - name: Upload Pages artifact

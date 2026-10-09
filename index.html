@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>skpro.ch</title>
+    <meta name="description" content="SKProCH">
+    <meta property="og:title" content="SKProCH">
+    <meta property="og:description" content="SKProCH">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skpro.ch/">
+    <meta property="og:image" content="https://skpro.ch/assets/skproch-embed.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="SKProCH in cyan and white ASCII lettering on a dark background">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://skpro.ch/assets/skproch-embed.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
@@ -41,6 +53,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .ascii-logo {
+            font: 700 clamp(6px, 1.65vw, 20px)/1.2 'Courier New', monospace;
+            white-space: pre;
+            margin-bottom: 1rem;
+            font-variant-ligatures: none;
         }
 
         .site-links {
@@ -184,6 +203,7 @@
 <body class="no-transition">
 
     <div class="logo-container">
+        <pre class="ascii-logo" role="img" aria-label="SKProCH"></pre>
         <div class="logo">
             <!-- s -> S -->
             <div class="letter">
@@ -236,6 +256,7 @@
         </div>
     </div>
 
+    <script type="module" src="./assets/skproch-logo.js"></script>
     <script>
         const logo = document.querySelector('.logo');
         let autoInterval;
