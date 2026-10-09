@@ -43,7 +43,7 @@
             background: radial-gradient(circle at center, #18181b 0%, #09090b 100%);
             height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
             overflow: hidden;
@@ -53,13 +53,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        .ascii-logo {
-            font: 700 clamp(6px, 1.65vw, 20px)/1.2 'Courier New', monospace;
-            white-space: pre;
-            margin-bottom: 1rem;
-            font-variant-ligatures: none;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .site-links {
@@ -70,7 +68,7 @@
 
         .site-link {
             color: var(--text-muted);
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-size: 1.1rem;
             text-decoration: none;
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
@@ -85,7 +83,7 @@
             display: flex;
             align-items: center;
             gap: 4px; /* Фиксированный зазор между буквами */
-            font-size: clamp(2.5rem, 8vw, 4.5rem); /* Адаптивный размер шрифта */
+            font-size: 4.5rem;
             font-weight: 700;
             color: var(--text-muted);
             cursor: pointer;
@@ -198,12 +196,35 @@
         .letter:nth-child(5) .dot  { transition-delay: 0.12s; } /* Исчезновение точки */
         .letter:nth-child(6) span { transition-delay: 0.15s; } /* 'c' -> 'C' */
         .letter:nth-child(7) span { transition-delay: 0.18s; } /* 'h' -> 'H' */
+
+        .outer-wilds-stars {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .outer-wilds-container {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 928px;
+            pointer-events: none;
+        }
+
+        /* Keep the camp's scale fixed; narrow windows crop its left edge. */
+        .outer-wilds {
+            display: block;
+            width: 928px;
+            height: 522px;
+            image-rendering: pixelated;
+        }
     </style>
 </head>
 <body class="no-transition">
 
     <div class="logo-container">
-        <pre class="ascii-logo" role="img" aria-label="SKProCH"></pre>
         <div class="logo">
             <!-- s -> S -->
             <div class="letter">
@@ -256,7 +277,15 @@
         </div>
     </div>
 
-    <script type="module" src="./assets/skproch-logo.js"></script>
+    <canvas class="outer-wilds-stars" aria-hidden="true"></canvas>
+    <figure class="outer-wilds-container">
+        <canvas class="outer-wilds" width="960" height="540" role="img"
+                aria-label="Outer Wilds: путешественник у костра на маленькой лесной планете под звёздами">
+            Путешественник у костра на маленькой лесной планете под звёздами.
+        </canvas>
+    </figure>
+    <script type="module" src="./assets/outer-wilds.js"></script>
+
     <script>
         const logo = document.querySelector('.logo');
         let autoInterval;
