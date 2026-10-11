@@ -67,16 +67,19 @@
         }
 
         .site-link {
-            color: var(--text-muted);
+            color: #9ca3af;
             font-size: 1.1rem;
             text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            text-shadow: 0 0 2px var(--bg-color),
+                         0 0 4px var(--bg-color),
+                         0 0 8px var(--bg-color),
+                         0 0 16px var(--bg-color);
+            transition: color 0.3s ease;
         }
 
         .site-link:hover,
         .site-link:focus-visible {
             color: var(--text-active);
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
         }
 
         .logo {
